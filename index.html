@@ -38,7 +38,7 @@
   <div class="container">
     <h1>Gerador de Código Universal EAN-13</h1>
     <button onclick="gerarCodigoEAN13()">Gerar Código</button>
-    <div id="codigo" onclick="copiarTexto() ></div>
+    <div id="codigo"></div>
   </div>
 
   <script>
@@ -60,18 +60,8 @@
       }
       const digito = calcularDigitoVerificador(codigo12);
       const codigoCompleto = codigo12 + digito;
+      onclick="copiarTexto()
       document.getElementById("codigo").innerText = `EAN-13: ${codigoCompleto}`;
-    }
-
-    function copiarTexto() {
-      const texto = document.getElementById("textoParaCopiar").innerText;
-      navigator.clipboard.writeText(texto)
-       .then(() => {
-      alert("Texto copiado!");
-    })
-    .catch(err => {
-      console.error("Erro ao copiar: ", err);
-    });
     }
       
   </script>
