@@ -49,8 +49,7 @@
         soma += (i % 2 === 0) ? num : num * 3;
       }
       const resto = soma % 10;
-      const digitoVerificador = (10 - resto) % 10;
-      return digitoVerificador;
+      return (10 - resto) % 10;
     }
 
     function gerarCodigoEAN13() {
@@ -59,11 +58,25 @@
         codigo12 += Math.floor(Math.random() * 10);
       }
       const digito = calcularDigitoVerificador(codigo12);
-      const codigoCompleto = codigo12 + digito;
-      onclick="copiarTexto()
-      document.getElementById("codigo").innerText = `EAN-13: ${codigoCompleto}`;
-    }
+      const codigoFinal = `${codigo12}${digito}`;
       
+      document.getElementById("codigo").innerText = `EAN-13: ${codigoFinal}`;
+      copiarTexto(codigoFinal); 
+    }
+
+    function copiarTexto(texto) {
+      const textarea = document.createElement("textarea");
+      textarea.value = texto;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+       console.log('Copiado')
+      } catch (err) {
+        console.error("Erro ao copiar: ", err);
+      }
+      document.body.removeChild(textarea);
+    }
   </script>
 </body>
 </html>
